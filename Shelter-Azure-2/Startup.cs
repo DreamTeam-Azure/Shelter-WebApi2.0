@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Shelter_Azure_2.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Shelter_Azure_2
 {
@@ -32,6 +34,12 @@ namespace Shelter_Azure_2
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Shelter_Azure_2", Version = "v1" });
             });
+            // *
+            services.AddDbContext<ShelterDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("Default"));
+            });
+            // *
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
